@@ -1,11 +1,10 @@
-
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Briefcase } from "lucide-react";
+import { Search, Briefcase, MapPin, SlidersHorizontal } from "lucide-react";
 
 const mockJobs = [
   {
@@ -420,53 +419,137 @@ const mockJobs = [
 
 const JobListings = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+
+  // Get unique job types and locations for filters
+  const jobTypes = useMemo(() => 
+    Array.from(new Set(mockJobs.map(job => job.type))),
+    []
+  );
+
+  const locations = useMemo(() => 
+    Array.from(new Set(mockJobs.map(job => job.location))),
+    []
+  );
+
+  // Filter jobs based on search query and filters
+  const filteredJobs = useMemo(() => {
+    return mockJobs.filter(job => {
+      const matchesSearch = 
+        job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.company.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesType = !selectedType || job.type === selectedType;
+      const matchesLocation = !selectedLocation || job.location === selectedLocation;
+
+      return matchesSearch && matchesType && matchesLocation;
+    });
+  }, [searchQuery, selectedType, selectedLocation]);
 
   return (
     <div className="page-container">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Browse Opportunities</h1>
-        <div className="flex gap-4 max-w-xl">
-          <Input
-            type="text"
-            placeholder="Search jobs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-12"
-          />
-          <Button className="h-12 px-6 bg-sage-500 hover:bg-sage-600">
-            <Search className="h-5 w-5" />
-          </Button>
+        
+        {/* Search and Filters */}
+        <div className="bg-white p-4 rounded-lg shadow-sm border mb-6">
+          <div className="flex gap-4 max-w-xl mb-4">
+            <Input
+              type="text"
+              placeholder="Search jobs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-12"
+            />
+            <Button className="h-12 px-6 bg-sage-500 hover:bg-sage-600">
+              <Search className="h-5 w-5" />
+            </Button>
+          </div>
+          
+          <div className="flex flex-wrap gap-4">
+            <select
+              className="rounded-md border border-input bg-background px-3 h-10"
+              onChange={(e) => setSelectedType(e.target.value || null)}
+              value={selectedType || ""}
+            >
+              <option value="">All Types</option>
+              {jobTypes.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+            
+            <select
+              className="rounded-md border border-input bg-background px-3 h-10"
+              onChange={(e) => setSelectedLocation(e.target.value || null)}
+              value={selectedLocation || ""}
+            >
+              <option value="">All Locations</option>
+              {locations.map(location => (
+                <option key={location} value={location}>{location}</option>
+              ))}
+            </select>
+          </div>
         </div>
+
+        {/* Results count */}
+        <p className="text-gray-600 mb-4">
+          Showing {filteredJobs.length} opportunities
+        </p>
       </div>
 
+      {/* Job listings */}
       <div className="grid gap-6">
-        {mockJobs.map((job) => (
-          <Card key={job.id} className="card-hover">
-            <CardHeader>
-              <div className="flex justify-between items-start">
-                <div>
-                  <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
-                  <div className="flex items-center text-gray-600">
-                    <Briefcase className="h-4 w-4 mr-2" />
-                    {job.company}
+        {filteredJobs.length > 0 ? (
+          filteredJobs.map((job) => (
+            <Card key={job.id} className="card-hover transition-all duration-200">
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
+                    <div className="flex items-center gap-4 text-gray-600">
+                      <div className="flex items-center">
+                        <Briefcase className="h-4 w-4 mr-2" />
+                        {job.company}
+                      </div>
+                      <div className="flex items-center">
+                        <MapPin className="h-4 w-4 mr-2" />
+                        {job.location}
+                      </div>
+                    </div>
                   </div>
+                  <Badge variant="secondary" className="bg-sage-100 text-sage-700">
+                    {job.type}
+                  </Badge>
                 </div>
-                <Badge variant="secondary" className="bg-sage-100 text-sage-700">
-                  {job.type}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">{job.location}</p>
-            </CardContent>
-            <CardFooter className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">Posted {job.posted}</span>
-              <Link to={`/jobs/${job.id}`}>
-                <Button variant="outline">View Details</Button>
-              </Link>
-            </CardFooter>
-          </Card>
-        ))}
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{job.location}</p>
+              </CardContent>
+              <CardFooter className="flex justify-between items-center">
+                <span className="text-sm text-gray-500">Posted {job.posted}</span>
+                <Link to={`/jobs/${job.id}`}>
+                  <Button variant="outline">View Details</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))
+        ) : (
+          <div className="text-center py-12 bg-gray-50 rounded-lg">
+            <p className="text-gray-600">No jobs found matching your criteria</p>
+            <Button
+              variant="link"
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedType(null);
+                setSelectedLocation(null);
+              }}
+              className="mt-2"
+            >
+              Clear filters
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
