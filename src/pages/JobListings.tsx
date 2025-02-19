@@ -1,10 +1,7 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Search, Briefcase, MapPin, SlidersHorizontal } from "lucide-react";
+import JobCard from "@/components/jobs/JobCard";
+import JobFilters from "@/components/jobs/JobFilters";
+import NoJobsFound from "@/components/jobs/NoJobsFound";
 
 const mockJobs = [
   {
@@ -447,108 +444,40 @@ const JobListings = () => {
     });
   }, [searchQuery, selectedType, selectedLocation]);
 
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedType(null);
+    setSelectedLocation(null);
+  };
+
   return (
     <div className="page-container">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Browse Opportunities</h1>
         
-        {/* Search and Filters */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border mb-6">
-          <div className="flex gap-4 max-w-xl mb-4">
-            <Input
-              type="text"
-              placeholder="Search jobs..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-12"
-            />
-            <Button className="h-12 px-6 bg-sage-500 hover:bg-sage-600">
-              <Search className="h-5 w-5" />
-            </Button>
-          </div>
-          
-          <div className="flex flex-wrap gap-4">
-            <select
-              className="rounded-md border border-input bg-background px-3 h-10"
-              onChange={(e) => setSelectedType(e.target.value || null)}
-              value={selectedType || ""}
-            >
-              <option value="">All Types</option>
-              {jobTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
-            
-            <select
-              className="rounded-md border border-input bg-background px-3 h-10"
-              onChange={(e) => setSelectedLocation(e.target.value || null)}
-              value={selectedLocation || ""}
-            >
-              <option value="">All Locations</option>
-              {locations.map(location => (
-                <option key={location} value={location}>{location}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+        <JobFilters
+          searchQuery={searchQuery}
+          selectedType={selectedType}
+          selectedLocation={selectedLocation}
+          jobTypes={jobTypes}
+          locations={locations}
+          onSearchChange={setSearchQuery}
+          onTypeChange={setSelectedType}
+          onLocationChange={setSelectedLocation}
+        />
 
-        {/* Results count */}
         <p className="text-gray-600 mb-4">
           Showing {filteredJobs.length} opportunities
         </p>
       </div>
 
-      {/* Job listings */}
       <div className="grid gap-6">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
-            <Card key={job.id} className="card-hover transition-all duration-200">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
-                    <div className="flex items-center gap-4 text-gray-600">
-                      <div className="flex items-center">
-                        <Briefcase className="h-4 w-4 mr-2" />
-                        {job.company}
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-2" />
-                        {job.location}
-                      </div>
-                    </div>
-                  </div>
-                  <Badge variant="secondary" className="bg-sage-100 text-sage-700">
-                    {job.type}
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{job.location}</p>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center">
-                <span className="text-sm text-gray-500">Posted {job.posted}</span>
-                <Link to={`/jobs/${job.id}`}>
-                  <Button variant="outline">View Details</Button>
-                </Link>
-              </CardFooter>
-            </Card>
+            <JobCard key={job.id} job={job} />
           ))
         ) : (
-          <div className="text-center py-12 bg-gray-50 rounded-lg">
-            <p className="text-gray-600">No jobs found matching your criteria</p>
-            <Button
-              variant="link"
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedType(null);
-                setSelectedLocation(null);
-              }}
-              className="mt-2"
-            >
-              Clear filters
-            </Button>
-          </div>
+          <NoJobsFound onClear={clearFilters} />
         )}
       </div>
     </div>
