@@ -12,6 +12,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import JobDetail from "./pages/JobDetail";
 import SchoolMap from "./pages/SchoolMap";
 import NotFound from "./pages/NotFound";
+import ResumeBuilder from "./pages/ResumeBuilder";
+import ApplicationTracker from "./pages/ApplicationTracker";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
             <Route path="/jobs/:id" element={<JobDetail />} />
             <Route path="/submit" element={<SubmitJob />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/resume-builder" element={<ResumeBuilder />} />
+            <Route path="/applications" element={<ApplicationTracker />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
