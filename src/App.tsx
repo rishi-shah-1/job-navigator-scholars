@@ -14,6 +14,9 @@ import SchoolMap from "./pages/SchoolMap";
 import NotFound from "./pages/NotFound";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import ApplicationTracker from "./pages/ApplicationTracker";
+import EmployerProfiles from "./pages/EmployerProfiles";
+import Support from "./pages/Support";
+import JobRecommendations from "./pages/JobRecommendations";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/resume-builder" element={<ResumeBuilder />} />
             <Route path="/applications" element={<ApplicationTracker />} />
+            <Route path="/employers" element={<EmployerProfiles />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/recommendations" element={<JobRecommendations />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
