@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,8 @@ import {
   ListTodo,
   Calendar,
   HelpCircle,
-  Trophy
+  Trophy,
+  BookOpenCheck 
 } from "lucide-react";
 import {
   Accordion,
@@ -90,6 +90,12 @@ const Home = () => {
       title: "Guidance Events",
       description: "Register for workshops",
       link: "/events"
+    },
+    {
+      icon: <BookOpenCheck className="h-8 w-8 text-[#003087]" />,
+      title: "Online Courses",
+      description: "Access certifications & training",
+      link: "/courses"
     }
   ];
 
