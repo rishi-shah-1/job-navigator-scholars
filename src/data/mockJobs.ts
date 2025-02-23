@@ -179,6 +179,150 @@ export const mockJobs = [
     salary: "$18/hour",
     localEmployer: true
   },
+  {
+    id: 16,
+    title: "Environmental Science Intern",
+    company: "NJ Environmental Protection",
+    location: "Edison, NJ",
+    type: "Internship",
+    posted: "2 days ago",
+    description: "Help with environmental research and conservation projects.",
+    requirements: ["Science background", "Field work interest", "Data collection"],
+    salary: "$19/hour",
+    localEmployer: true
+  },
+  {
+    id: 17,
+    title: "Pharmacy Assistant",
+    company: "CVS Health",
+    location: "Sayreville, NJ",
+    type: "Part-time",
+    posted: "1 day ago",
+    description: "Learn pharmacy operations while assisting licensed pharmacists.",
+    requirements: ["Healthcare interest", "Customer service", "Detail-oriented"],
+    salary: "$16/hour",
+    localEmployer: true
+  },
+  {
+    id: 18,
+    title: "Art Education Scholarship",
+    company: "Mason Gross School of Arts",
+    location: "New Brunswick, NJ",
+    type: "Scholarship",
+    posted: "4 days ago",
+    description: "Scholarship for aspiring art educators from Middlesex County.",
+    requirements: ["Art portfolio", "Teaching interest", "3.0+ GPA"],
+    salary: "$2500 award",
+    localEmployer: true
+  },
+  {
+    id: 19,
+    title: "Junior Web Developer",
+    company: "Tech Innovations NJ",
+    location: "Woodbridge, NJ",
+    type: "Internship",
+    posted: "3 days ago",
+    description: "Build real websites while learning from senior developers.",
+    requirements: ["HTML/CSS", "JavaScript basics", "GitHub knowledge"],
+    salary: "$21/hour",
+    localEmployer: true
+  },
+  {
+    id: 20,
+    title: "Youth Sports Coach",
+    company: "Sayreville Recreation",
+    location: "Sayreville, NJ",
+    type: "Part-time",
+    posted: "2 days ago",
+    description: "Coach youth sports programs after school and weekends.",
+    requirements: ["Sports background", "Leadership skills", "First Aid cert"],
+    salary: "$17/hour",
+    localEmployer: true
+  },
+  {
+    id: 21,
+    title: "Engineering Scholarship",
+    company: "Middlesex Water Company",
+    location: "Iselin, NJ",
+    type: "Scholarship",
+    posted: "5 days ago",
+    description: "Scholarship for future water resource engineers.",
+    requirements: ["Engineering interest", "3.5+ GPA", "Local resident"],
+    salary: "$4000 award",
+    localEmployer: true
+  },
+  {
+    id: 22,
+    title: "Social Media Assistant",
+    company: "Local Marketing Group",
+    location: "Old Bridge, NJ",
+    type: "Part-time",
+    posted: "1 day ago",
+    description: "Create content for local businesses' social media.",
+    requirements: ["Social media savvy", "Creative writing", "Photography skills"],
+    salary: "$16/hour",
+    localEmployer: true
+  },
+  {
+    id: 23,
+    title: "Laboratory Assistant",
+    company: "Biotech Research Labs",
+    location: "North Brunswick, NJ",
+    type: "Internship",
+    posted: "4 days ago",
+    description: "Assist in biotechnology research projects.",
+    requirements: ["Biology/Chemistry", "Lab safety", "Detail-oriented"],
+    salary: "$20/hour",
+    localEmployer: true
+  },
+  {
+    id: 24,
+    title: "Future Teachers Scholarship",
+    company: "NJ Education Association",
+    location: "Sayreville, NJ",
+    type: "Scholarship",
+    posted: "3 days ago",
+    description: "Support for future educators from Middlesex County.",
+    requirements: ["Education major intent", "3.0+ GPA", "Community service"],
+    salary: "$3000 award",
+    localEmployer: true
+  },
+  {
+    id: 25,
+    title: "IT Help Desk",
+    company: "Sayreville Board of Education",
+    location: "Sayreville, NJ",
+    type: "Part-time",
+    posted: "2 days ago",
+    description: "Provide technical support to school staff and students.",
+    requirements: ["Tech troubleshooting", "Communication skills", "Windows/Mac OS"],
+    salary: "$18/hour",
+    localEmployer: true
+  },
+  {
+    id: 26,
+    title: "Culinary Arts Apprentice",
+    company: "Garden State Culinary Institute",
+    location: "South Amboy, NJ",
+    type: "Internship",
+    posted: "1 day ago",
+    description: "Learn from professional chefs in a working kitchen.",
+    requirements: ["Culinary interest", "Food safety cert", "Weekend availability"],
+    salary: "$17/hour",
+    localEmployer: true
+  },
+  {
+    id: 50,
+    title: "Virtual Reality Developer Intern",
+    company: "Future Tech Solutions",
+    location: "Edison, NJ",
+    type: "Internship",
+    posted: "1 day ago",
+    description: "Develop educational VR experiences for local schools.",
+    requirements: ["Unity3D", "C#", "3D modeling basics"],
+    salary: "$23/hour",
+    localEmployer: true
+  }
 ];
 
 export const mockEmployers = [
