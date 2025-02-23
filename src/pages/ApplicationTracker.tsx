@@ -2,8 +2,24 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Clock, CheckCircle2, XCircle, HourglassIcon } from "lucide-react";
+import { Plus, Clock, CheckCircle2, XCircle, HourglassIcon, Edit2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 interface Application {
   id: string;
@@ -14,15 +30,31 @@ interface Application {
 }
 
 const ApplicationTracker = () => {
-  const [applications, setApplications] = useState<Application[]>([
-    {
-      id: '1',
-      company: 'Example Corp',
-      position: 'Summer Intern',
-      status: 'pending',
-      appliedDate: '2024-03-15'
-    }
-  ]);
+  const [applications, setApplications] = useState<Application[]>(() => {
+    const saved = localStorage.getItem('applications');
+    return saved ? JSON.parse(saved) : [
+      {
+        id: '1',
+        company: 'Example Corp',
+        position: 'Summer Intern',
+        status: 'pending',
+        appliedDate: '2024-03-15'
+      }
+    ];
+  });
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [editingApplication, setEditingApplication] = useState<Application | null>(null);
+  const [formData, setFormData] = useState({
+    company: '',
+    position: '',
+    status: 'pending',
+    appliedDate: new Date().toISOString().split('T')[0]
+  });
+
+  const saveToLocalStorage = (apps: Application[]) => {
+    localStorage.setItem('applications', JSON.stringify(apps));
+  };
 
   const getStatusIcon = (status: Application['status']) => {
     switch (status) {
@@ -50,8 +82,64 @@ const ApplicationTracker = () => {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (editingApplication) {
+      const updatedApplications = applications.map(app => 
+        app.id === editingApplication.id ? { ...formData, id: app.id } : app
+      );
+      setApplications(updatedApplications);
+      saveToLocalStorage(updatedApplications);
+      toast.success("Application updated successfully!");
+    } else {
+      const newApplication = {
+        ...formData,
+        id: Date.now().toString()
+      };
+      const newApplications = [...applications, newApplication];
+      setApplications(newApplications);
+      saveToLocalStorage(newApplications);
+      toast.success("Application added successfully!");
+    }
+    
+    setIsDialogOpen(false);
+    setEditingApplication(null);
+    setFormData({
+      company: '',
+      position: '',
+      status: 'pending',
+      appliedDate: new Date().toISOString().split('T')[0]
+    });
+  };
+
+  const handleEdit = (application: Application) => {
+    setEditingApplication(application);
+    setFormData({
+      company: application.company,
+      position: application.position,
+      status: application.status,
+      appliedDate: application.appliedDate
+    });
+    setIsDialogOpen(true);
+  };
+
+  const handleDelete = (id: string) => {
+    const updatedApplications = applications.filter(app => app.id !== id);
+    setApplications(updatedApplications);
+    saveToLocalStorage(updatedApplications);
+    toast.success("Application removed successfully!");
+  };
+
   const addApplication = () => {
-    toast.success("Feature coming soon!");
+    setEditingApplication(null);
+    setFormData({
+      company: '',
+      position: '',
+      status: 'pending',
+      appliedDate: new Date().toISOString().split('T')[0]
+    });
+    setIsDialogOpen(true);
   };
 
   return (
@@ -85,12 +173,95 @@ const ApplicationTracker = () => {
                   <span className="text-sm text-gray-500">
                     Applied: {new Date(application.appliedDate).toLocaleDateString()}
                   </span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleEdit(application)}
+                  >
+                    <Edit2 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleDelete(application.id)}
+                  >
+                    <Trash2 className="h-4 w-4 text-red-500" />
+                  </Button>
                 </div>
               </div>
             ))}
+            {applications.length === 0 && (
+              <div className="text-center py-8 text-gray-500">
+                No applications yet. Click "Add Application" to get started!
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{editingApplication ? 'Edit Application' : 'Add New Application'}</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="company">Company</Label>
+                <Input
+                  id="company"
+                  value={formData.company}
+                  onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="position">Position</Label>
+                <Input
+                  id="position"
+                  value={formData.position}
+                  onChange={(e) => setFormData(prev => ({ ...prev, position: e.target.value }))}
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="status">Status</Label>
+                <Select
+                  value={formData.status}
+                  onValueChange={(value: Application['status']) => 
+                    setFormData(prev => ({ ...prev, status: value }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="interviewed">Interviewed</SelectItem>
+                    <SelectItem value="accepted">Accepted</SelectItem>
+                    <SelectItem value="rejected">Rejected</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="appliedDate">Application Date</Label>
+                <Input
+                  id="appliedDate"
+                  type="date"
+                  value={formData.appliedDate}
+                  onChange={(e) => setFormData(prev => ({ ...prev, appliedDate: e.target.value }))}
+                  required
+                />
+              </div>
+            </div>
+            <DialogFooter className="mt-6">
+              <Button type="submit" className="bg-[#003087]">
+                {editingApplication ? 'Update' : 'Add'} Application
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
