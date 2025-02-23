@@ -13,10 +13,12 @@ import {
 } from "lucide-react";
 import { LanguageSelector } from "./LanguageSelector";
 import { useLocation } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const { t } = useLanguage();
 
   return (
     <nav className="border-b bg-[#003087]/95 backdrop-blur-sm sticky top-0 z-50">
@@ -44,36 +46,36 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-6">
             <Link to="/map" className="text-white hover:text-gray-200 flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              School Map
+              {t("School Map")}
             </Link>
             <Link to="/jobs" className="text-white hover:text-gray-200 flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
-              Job Listings
+              {t("Job Listings")}
             </Link>
             <Link to="/courses" className="text-white hover:text-gray-200 flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              Courses
+              {t("Courses")}
             </Link>
             <Link to="/events" className="text-white hover:text-gray-200 flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              Events
+              {t("Events")}
             </Link>
             <Link to="/reviews" className="text-white hover:text-gray-200 flex items-center gap-2">
               <Building2 className="h-4 w-4" />
-              Reviews
+              {t("Reviews")}
             </Link>
             <Link to="/permits" className="text-white hover:text-gray-200 flex items-center gap-2">
               <FileText className="h-4 w-4" />
-              Permits
+              {t("Permits")}
             </Link>
             <Link to="/insights" className="text-white hover:text-gray-200 flex items-center gap-2">
               <TrendingUp className="h-4 w-4" />
-              Insights
+              {t("Insights")}
             </Link>
             <LanguageSelector />
             <Link to="/submit">
               <Button variant="outline" className="bg-white text-[#003087] hover:bg-gray-100">
-                Submit Job
+                {t("Submit Job")}
               </Button>
             </Link>
           </div>
