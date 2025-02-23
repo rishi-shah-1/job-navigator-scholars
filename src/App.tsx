@@ -16,8 +16,14 @@ import NotFound from "./pages/NotFound";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import ApplicationTracker from "./pages/ApplicationTracker";
 import EmployerProfiles from "./pages/EmployerProfiles";
+import EmployerReviews from "./pages/EmployerReviews";
 import Support from "./pages/Support";
 import JobRecommendations from "./pages/JobRecommendations";
+import OnlineCourses from "./pages/OnlineCourses";
+import GuidanceEvents from "./pages/GuidanceEvents";
+import CareerInsights from "./pages/CareerInsights";
+import WorkPermits from "./pages/WorkPermits";
+import Alerts from "./pages/Alerts";
 
 const queryClient = new QueryClient();
 
@@ -40,8 +46,14 @@ const App = () => (
               <Route path="/resume-builder" element={<ResumeBuilder />} />
               <Route path="/applications" element={<ApplicationTracker />} />
               <Route path="/employers" element={<EmployerProfiles />} />
+              <Route path="/reviews" element={<EmployerReviews />} />
               <Route path="/support" element={<Support />} />
               <Route path="/recommendations" element={<JobRecommendations />} />
+              <Route path="/courses" element={<OnlineCourses />} />
+              <Route path="/events" element={<GuidanceEvents />} />
+              <Route path="/insights" element={<CareerInsights />} />
+              <Route path="/permits" element={<WorkPermits />} />
+              <Route path="/alerts" element={<Alerts />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Clock, CheckCircle2, XCircle, HourglassIcon } from "lucide-react";
+import { toast } from "sonner";
 
 interface Application {
   id: string;
@@ -49,12 +50,16 @@ const ApplicationTracker = () => {
     }
   };
 
+  const addApplication = () => {
+    toast.success("Feature coming soon!");
+  };
+
   return (
     <div className="page-container py-8">
       <Card className="max-w-4xl mx-auto">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-2xl font-bold text-[#003087]">Application Tracker</CardTitle>
-          <Button className="bg-[#003087]">
+          <Button onClick={addApplication} className="bg-[#003087]">
             <Plus className="h-4 w-4 mr-2" />
             Add Application
           </Button>
