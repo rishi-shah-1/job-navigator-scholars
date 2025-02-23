@@ -15,7 +15,8 @@ import {
   Brain,
   ListTodo,
   Calendar,
-  HelpCircle
+  HelpCircle,
+  Trophy
 } from "lucide-react";
 import {
   Accordion,
@@ -49,6 +50,12 @@ const Home = () => {
       link: "/jobs"
     },
     {
+      icon: <Trophy className="h-8 w-8 text-[#003087]" />,
+      title: "Success Stories",
+      description: "Read graduate testimonials",
+      link: "/success-stories"
+    },
+    {
       icon: <MessageSquare className="h-8 w-8 text-[#003087]" />,
       title: "Live Support",
       description: "Get help",
@@ -77,12 +84,6 @@ const Home = () => {
       title: "Application Tracker",
       description: "Track applications",
       link: "/applications"
-    },
-    {
-      icon: <BookOpen className="h-8 w-8 text-[#003087]" />,
-      title: "Online Courses",
-      description: "Access free courses",
-      link: "/courses"
     },
     {
       icon: <Calendar className="h-8 w-8 text-[#003087]" />,

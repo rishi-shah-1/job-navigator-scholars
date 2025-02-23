@@ -27,6 +27,7 @@ import CareerInsights from "./pages/CareerInsights";
 import WorkPermits from "./pages/WorkPermits";
 import Alerts from "./pages/Alerts";
 import Sources from "./pages/Sources";
+import SuccessStories from "./pages/SuccessStories";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
                 <Route path="/permits" element={<WorkPermits />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/sources" element={<Sources />} />
+                <Route path="/success-stories" element={<SuccessStories />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
