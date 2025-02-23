@@ -1,4 +1,3 @@
-
 export const mockJobs = [
   {
     id: 1,
@@ -70,6 +69,78 @@ export const mockJobs = [
     description: "Help maintain library organization and assist patrons. Perfect for students!",
     requirements: ["Organization skills", "Customer service", "After school availability"],
     salary: "$14/hour",
+    localEmployer: true
+  },
+  {
+    id: 7,
+    title: "Graphic Design Intern",
+    company: "Creative Studios NJ",
+    location: "Edison, NJ",
+    type: "Internship",
+    posted: "2 days ago",
+    description: "Join our creative team and learn graphic design, animation, and digital art.",
+    requirements: ["Adobe Creative Suite", "Art portfolio", "Creative mindset"],
+    salary: "$18/hour",
+    localEmployer: true
+  },
+  {
+    id: 8,
+    title: "Business Analytics Internship",
+    company: "PNC Bank",
+    location: "South Brunswick, NJ",
+    type: "Internship",
+    posted: "3 days ago",
+    description: "Learn business analytics and financial reporting in a banking environment.",
+    requirements: ["Excel skills", "Business major", "Strong math background"],
+    salary: "$20/hour",
+    localEmployer: true
+  },
+  {
+    id: 9,
+    title: "Nursing Assistant Program",
+    company: "Robert Wood Johnson Hospital",
+    location: "New Brunswick, NJ",
+    type: "Scholarship",
+    posted: "1 day ago",
+    description: "Full scholarship for nursing assistant certification program.",
+    requirements: ["Interest in healthcare", "High school senior", "3.0+ GPA"],
+    salary: "Full tuition coverage",
+    localEmployer: true
+  },
+  {
+    id: 10,
+    title: "Education Support Assistant",
+    company: "South River School District",
+    location: "South River, NJ",
+    type: "Part-time",
+    posted: "4 days ago",
+    description: "Assist teachers and staff. Perfect for education majors.",
+    requirements: ["Education interest", "Good with children", "Available after school"],
+    salary: "$16/hour",
+    localEmployer: true
+  },
+  {
+    id: 11,
+    title: "Web Development Intern",
+    company: "Digital Solutions NJ",
+    location: "East Brunswick, NJ",
+    type: "Internship",
+    posted: "2 days ago",
+    description: "Learn modern web development while working on real projects.",
+    requirements: ["HTML/CSS basics", "JavaScript interest", "Problem-solving skills"],
+    salary: "$19/hour",
+    localEmployer: true
+  },
+  {
+    id: 12,
+    title: "Healthcare Research Scholarship",
+    company: "Hackensack Meridian Health",
+    location: "Old Bridge, NJ",
+    type: "Scholarship",
+    posted: "5 days ago",
+    description: "Research scholarship for students interested in healthcare careers.",
+    requirements: ["3.5+ GPA", "Healthcare interest", "Research proposal"],
+    salary: "$3000 award",
     localEmployer: true
   }
 ];

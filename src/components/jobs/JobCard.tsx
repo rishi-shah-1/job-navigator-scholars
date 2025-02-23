@@ -24,12 +24,17 @@ const JobCard = ({ job }: JobCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     
+    // In a real app, this would connect to a notification API
+    localStorage.setItem(`job-alert-${job.id}`, 'true');
+    
     toast({
-      title: "Notification Set!",
-      description: `You'll be notified about updates to ${job.title} at ${job.company}.`,
-      duration: 3000,
+      title: "Alert Set Successfully!",
+      description: `You will be notified of updates for "${job.title}" at ${job.company}. Check your email for confirmation.`,
+      duration: 5000,
     });
   };
+
+  const isAlertSet = localStorage.getItem(`job-alert-${job.id}`) === 'true';
 
   return (
     <Card className="card-hover transition-all duration-200">
@@ -60,9 +65,10 @@ const JobCard = ({ job }: JobCardProps) => {
         <span className="text-sm text-gray-500">Posted {job.posted}</span>
         <div className="flex gap-2">
           <Button 
-            variant="outline" 
+            variant={isAlertSet ? "default" : "outline"}
             size="icon"
             onClick={handleNotify}
+            className={isAlertSet ? "bg-green-500 hover:bg-green-600" : ""}
           >
             <Bell className="h-4 w-4" />
           </Button>
