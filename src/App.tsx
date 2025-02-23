@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SocialShare from "./components/SocialShare";
 import Home from "./pages/Home";
 import JobListings from "./pages/JobListings";
 import SubmitJob from "./pages/SubmitJob";
@@ -38,6 +39,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <Navbar />
+            <SocialShare />
             <main className="flex-grow">
               <Routes>
                 <Route path="/" element={<Home />} />
