@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,15 +31,21 @@ interface Application {
 const ApplicationTracker = () => {
   const [applications, setApplications] = useState<Application[]>(() => {
     const saved = localStorage.getItem('applications');
-    return saved ? JSON.parse(saved) : [
-      {
-        id: '1',
-        company: 'Example Corp',
-        position: 'Summer Intern',
-        status: 'pending',
-        appliedDate: '2024-03-15'
-      }
-    ];
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Ensure the status is one of the allowed values
+      return parsed.map((app: any) => ({
+        ...app,
+        status: app.status as Application['status']
+      }));
+    }
+    return [{
+      id: '1',
+      company: 'Example Corp',
+      position: 'Summer Intern',
+      status: 'pending' as const,
+      appliedDate: '2024-03-15'
+    }];
   });
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);

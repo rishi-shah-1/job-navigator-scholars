@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -37,7 +36,7 @@ const translations = {
     "Submit Job": "Submit Job",
     "School Map": "School Map",
     "Job Listings": "Job Listings",
-    "Courses": "Cursos",
+    "Courses": "Courses",
     "Events": "Events",
     "Reviews": "Reviews",
     "Permits": "Permits",
