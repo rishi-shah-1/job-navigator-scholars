@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
   Search, 
-  GraduationCap, 
+  GraduationCap,
   Building2, 
   ClipboardCheck, 
   BookOpen,
@@ -14,11 +14,18 @@ import {
   Brain,
   ListTodo,
   Calendar,
+  HelpCircle,
   Presentation,
   Phone,
   Mail,
   User
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -86,46 +93,57 @@ const Home = () => {
     }
   ];
 
-  const schoolInfo = {
-    name: "Sayreville War Memorial High School",
-    address: "820 Washington Rd, Parlin, NJ 08859",
-    principal: "Richard Gluchowski",
-    founded: "1939",
-    colors: "Blue, Grey",
-    phone: "(732) 525-5252",
-    district: "Sayreville Borough School District"
-  };
+  const faqs = [
+    {
+      question: "How do I get a work permit?",
+      answer: "Visit the guidance office to pick up a work permit application. You'll need parent/guardian consent, a job offer, and proof of age. The process typically takes 3 business days."
+    },
+    {
+      question: "What jobs can I work at 16?",
+      answer: "At 16, you can work in retail, food service, offices, and other non-hazardous environments. There are restrictions on hours and certain tasks. Check the Work Permits page for details."
+    },
+    {
+      question: "How many hours can I work during school?",
+      answer: "Students 16-17 years old can work up to 8 hours per day, maximum 40 hours per week. During school days, you cannot work during school hours or past 7 PM."
+    },
+    {
+      question: "Do I need to maintain certain grades to work?",
+      answer: "Yes, you must maintain satisfactory academic performance. Your work permit can be revoked if your grades drop significantly."
+    }
+  ];
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <div className="bg-gradient-to-b from-[#003087]/10 to-white py-20">
-        <div className="page-container text-center">
-          <div className="flex items-center justify-center mb-6">
-            <GraduationCap className="h-12 w-12 text-[#003087] mr-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#003087]">
-              SWMHS Career Center
-            </h1>
-          </div>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Discover exclusive job opportunities curated for Sayreville War Memorial High School students by your guidance department.
-          </p>
-          
-          <div className="max-w-xl mx-auto flex gap-4 mb-12">
-            <Input
-              type="text"
-              placeholder="Search for jobs, internships, or scholarships..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-12"
-            />
-            <Link to={`/jobs?search=${searchQuery}`}>
-              <Button className="h-12 px-6 bg-[#003087] hover:bg-[#002065]">
-                <Search className="h-5 w-5" />
-              </Button>
-            </Link>
+      <div className="bg-gradient-to-b from-[#003087]/10 to-transparent">
+        <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center mb-6">
+              <GraduationCap className="h-12 w-12 text-[#003087] mr-4" />
+              <h1 className="text-4xl sm:text-5xl font-bold text-[#003087]">
+                SWMHS Career Center
+              </h1>
+            </div>
+            <p className="text-lg text-gray-600 mb-8">
+              Discover exclusive job opportunities curated for Sayreville War Memorial High School students by your guidance department.
+            </p>
+            
+            <div className="max-w-xl mx-auto flex gap-4 mb-12">
+              <Input
+                type="text"
+                placeholder="Search for jobs, internships, or scholarships..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-12"
+              />
+              <Link to={`/jobs?search=${searchQuery}`}>
+                <Button className="h-12 px-6 bg-[#003087] hover:bg-[#002065]">
+                  <Search className="h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left mb-16">
             {features.map((feature, index) => (
               <Link to={feature.link} key={index}>
                 <div className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full">
@@ -137,37 +155,23 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="mt-12 bg-[#003087] text-white p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">School Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <User className="h-4 w-4 mr-2" />
-                  <p>Principal: {schoolInfo.principal}</p>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <p>{schoolInfo.address}</p>
-                </div>
-                <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2" />
-                  <p>Phone: {schoolInfo.phone}</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <p>Founded: {schoolInfo.founded}</p>
-                <p>Colors: {schoolInfo.colors}</p>
-                <p>District: {schoolInfo.district}</p>
-              </div>
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6">
+            <div className="flex items-center gap-2 mb-6">
+              <HelpCircle className="h-6 w-6 text-[#003087]" />
+              <h2 className="text-2xl font-bold text-[#003087]">Frequently Asked Questions</h2>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/20">
-              <h3 className="text-xl font-semibold mb-2">Need Assistance?</h3>
-              <p className="mb-2">Contact our guidance department for personalized support</p>
-              <p className="text-lg font-semibold flex items-center justify-center gap-2">
-                <Phone className="h-5 w-5" />
-                {schoolInfo.phone}
-              </p>
-            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </div>
