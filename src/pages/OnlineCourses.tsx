@@ -4,22 +4,52 @@ import { ExternalLink } from "lucide-react";
 
 const courses = [
   {
-    platform: "Coursera",
-    description: "Access free courses through your school account",
-    link: "https://www.coursera.org/campus/high-school",
-    categories: ["Technology", "Business", "Science", "Arts"]
-  },
-  {
     platform: "LinkedIn Learning",
-    description: "Professional development and software training",
+    description: "Professional development and software training with verified certificates",
     link: "https://www.linkedin.com/learning",
-    categories: ["Professional Skills", "Software", "Business"]
+    categories: ["Technology", "Business", "Creative"]
   },
   {
-    platform: "Udemy",
-    description: "Career-focused online courses",
-    link: "https://www.udemy.com",
-    categories: ["Programming", "Design", "Marketing"]
+    platform: "Coursera",
+    description: "Professional certificates and courses from top universities",
+    link: "https://www.coursera.org/professional-certificates",
+    categories: ["Data Science", "Business", "Computer Science"]
+  },
+  {
+    platform: "Google Career Certificates",
+    description: "Professional certificates in high-growth fields",
+    link: "https://grow.google/certificates",
+    categories: ["IT Support", "Data Analytics", "UX Design"]
+  },
+  {
+    platform: "Microsoft Learn",
+    description: "Official Microsoft certification paths and training",
+    link: "https://learn.microsoft.com/certifications",
+    categories: ["Azure", "Microsoft 365", "Security"]
+  },
+  {
+    platform: "AWS Training",
+    description: "Amazon Web Services certification training",
+    link: "https://aws.amazon.com/training",
+    categories: ["Cloud Computing", "DevOps", "Security"]
+  },
+  {
+    platform: "Udacity",
+    description: "In-depth nanodegree programs in emerging technologies",
+    link: "https://www.udacity.com",
+    categories: ["AI", "Data Science", "Programming"]
+  },
+  {
+    platform: "edX",
+    description: "University-level courses and professional certificate programs",
+    link: "https://www.edx.org/professional-certificate",
+    categories: ["Computer Science", "Business", "Engineering"]
+  },
+  {
+    platform: "Codecademy",
+    description: "Interactive coding courses and skill paths",
+    link: "https://www.codecademy.com/pro",
+    categories: ["Web Development", "Data Science", "Computer Science"]
   }
 ];
 

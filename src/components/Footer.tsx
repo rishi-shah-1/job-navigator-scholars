@@ -77,14 +77,6 @@ const Footer = () => {
                 </Link>
               </li>
               {[
-                { text: "LinkedIn Learning", url: "https://www.linkedin.com/learning" },
-                { text: "Coursera Certifications", url: "https://www.coursera.org/professional-certificates" },
-                { text: "Google Career Certificates", url: "https://grow.google/certificates" },
-                { text: "Microsoft Learn", url: "https://learn.microsoft.com/certifications" },
-                { text: "AWS Training", url: "https://aws.amazon.com/training" },
-                { text: "Udacity Nanodegrees", url: "https://www.udacity.com" },
-                { text: "edX Programs", url: "https://www.edx.org/professional-certificate" },
-                { text: "Codecademy Pro", url: "https://www.codecademy.com/pro" },
                 { text: "Sayreville Schools Live Stream", url: "https://www.sayrevillek12.net/live-stream" },
                 { text: "BOE Live Stream", url: "https://www.sayrevillek12.net/board-of-education/live-stream" }
               ].map((link, index) => (
