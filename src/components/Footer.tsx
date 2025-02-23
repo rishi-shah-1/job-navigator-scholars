@@ -1,4 +1,5 @@
-import { Building2, Phone, Mail, Globe, FileText, Calendar, Bell, BookOpen, Code } from "lucide-react";
+
+import { Building2, Phone, Mail, Globe, FileText, Calendar, Bell, BookOpen, Code, Lock, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -69,7 +70,21 @@ const Footer = () => {
                   Technologies & Sources
                 </Link>
               </li>
+              <li>
+                <Link to="/admin" className="hover:text-gray-300 flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  Admin Dashboard
+                </Link>
+              </li>
               {[
+                { text: "LinkedIn Learning", url: "https://www.linkedin.com/learning" },
+                { text: "Coursera Certifications", url: "https://www.coursera.org/professional-certificates" },
+                { text: "Google Career Certificates", url: "https://grow.google/certificates" },
+                { text: "Microsoft Learn", url: "https://learn.microsoft.com/certifications" },
+                { text: "AWS Training", url: "https://aws.amazon.com/training" },
+                { text: "Udacity Nanodegrees", url: "https://www.udacity.com" },
+                { text: "edX Programs", url: "https://www.edx.org/professional-certificate" },
+                { text: "Codecademy Pro", url: "https://www.codecademy.com/pro" },
                 { text: "Sayreville Schools Live Stream", url: "https://www.sayrevillek12.net/live-stream" },
                 { text: "BOE Live Stream", url: "https://www.sayrevillek12.net/board-of-education/live-stream" }
               ].map((link, index) => (
