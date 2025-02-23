@@ -1,49 +1,99 @@
-
+import { Building2, Phone, Mail, Globe, FileText, Calendar, Bell, BookOpen, Code } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Lock } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#003087] text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-[#003087] text-white mt-auto">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">SWMHS Career Center</h3>
-            <p className="text-sm">
-              Supporting student success through career opportunities and guidance.
-            </p>
+            <div className="flex items-center gap-3 mb-4">
+              <Building2 className="h-6 w-6" />
+              <h3 className="font-semibold text-lg">Contact Us</h3>
+            </div>
+            <address className="not-italic space-y-2">
+              <p>Sayreville War Memorial High School</p>
+              <p>820 Washington Road</p>
+              <p>Parlin, NJ 08859</p>
+              <p className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <a href="tel:732-525-5252">732-525-5252</a>
+              </p>
+            </address>
           </div>
+
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/jobs" className="text-sm hover:underline">Job Listings</Link></li>
-              <li><Link to="/employers" className="text-sm hover:underline">Employer Profiles</Link></li>
-              <li><Link to="/events" className="text-sm hover:underline">Guidance Events</Link></li>
-              <li><Link to="/support" className="text-sm hover:underline">Support</Link></li>
+              <li>
+                <Link to="/events" className="hover:text-gray-300">Calendars</Link>
+              </li>
+              <li>
+                <Link to="/alerts" className="hover:text-gray-300">Facilities Notifications</Link>
+              </li>
+              <li>
+                <Link to="/courses" className="hover:text-gray-300">Academic Programs</Link>
+              </li>
             </ul>
           </div>
+
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <p className="text-sm">
-              820 Washington Road<br />
-              Parlin, NJ 08859<br />
-              (732) 525-5200
-            </p>
+            <h3 className="font-semibold text-lg mb-4">Resources</h3>
+            <ul className="space-y-2">
+              {[
+                { text: "HIB Resources", url: "https://www.sayrevillek12.net/departments/hib-resources" },
+                { text: "Budget", url: "https://www.sayrevillek12.net/departments/business-office/budget" },
+                { text: "Free and Reduced Meal Application", url: "https://www.sayrevillek12.net/departments/food-services" },
+                { text: "School Performance Reports", url: "https://www.sayrevillek12.net/departments/curriculum/school-performance-reports" },
+              ].map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-300"
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg mb-4">Developer Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/sources" className="hover:text-gray-300 flex items-center gap-2">
+                  <Code className="h-4 w-4" />
+                  Technologies & Sources
+                </Link>
+              </li>
+              {[
+                { text: "Sayreville Schools Live Stream", url: "https://www.sayrevillek12.net/live-stream" },
+                { text: "BOE Live Stream", url: "https://www.sayrevillek12.net/board-of-education/live-stream" }
+              ].map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-300"
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <div className="mt-8 pt-4 border-t border-blue-400 flex justify-between items-center">
-          <p className="text-sm">© 2024 SWMHS Career Center. All rights reserved.</p>
-          <Link 
-            to="/admin" 
-            className="text-sm hover:underline flex items-center gap-1 opacity-75 hover:opacity-100"
-          >
-            <Lock className="h-4 w-4" />
-            Admin Login
-          </Link>
+
+        <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm">
+          <p>&copy; {new Date().getFullYear()} Sayreville War Memorial High School. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
