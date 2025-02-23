@@ -44,6 +44,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: LanguageCode) => {
     setLanguageState(lang);
     localStorage.setItem('preferred-language', lang);
+    document.documentElement.lang = lang;
     toast({
       title: "Language Changed",
       description: `Language set to ${LANGUAGES[lang].name}`,
@@ -51,15 +52,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     });
   };
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   // Simple translation function (expand this with a proper i18n system)
   const t = (key: string): string => {
     // This is a placeholder. In a real app, you'd have proper translations
     return key;
   };
-
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

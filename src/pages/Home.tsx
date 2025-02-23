@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,11 +15,7 @@ import {
   Brain,
   ListTodo,
   Calendar,
-  HelpCircle,
-  Presentation,
-  Phone,
-  Mail,
-  User
+  HelpCircle
 } from "lucide-react";
 import {
   Accordion,
@@ -26,9 +23,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFeature, setActiveFeature] = useState<number | null>(null);
+  const { toast } = useToast();
+  const { language } = useLanguage();
 
   const features = [
     {
@@ -54,42 +56,6 @@ const Home = () => {
       title: "Live Support",
       description: "Get help from our guidance team when you need it",
       link: "/support"
-    },
-    {
-      icon: <MapPin className="h-8 w-8 text-[#003087]" />,
-      title: "Interactive Map",
-      description: "Find opportunities near Sayreville",
-      link: "/map"
-    },
-    {
-      icon: <Brain className="h-8 w-8 text-[#003087]" />,
-      title: "Smart Matching",
-      description: "Get personalized job recommendations",
-      link: "/recommendations"
-    },
-    {
-      icon: <Bell className="h-8 w-8 text-[#003087]" />,
-      title: "Instant Alerts",
-      description: "Never miss new opportunities",
-      link: "/alerts"
-    },
-    {
-      icon: <ListTodo className="h-8 w-8 text-[#003087]" />,
-      title: "Application Tracker",
-      description: "Track all your applications in one place",
-      link: "/applications"
-    },
-    {
-      icon: <Presentation className="h-8 w-8 text-[#003087]" />,
-      title: "Online Courses",
-      description: "Access free courses and certifications from top platforms",
-      link: "/courses"
-    },
-    {
-      icon: <Calendar className="h-8 w-8 text-[#003087]" />,
-      title: "Guidance Events",
-      description: "Register for workshops and career development events",
-      link: "/events"
     }
   ];
 
@@ -116,9 +82,9 @@ const Home = () => {
     <div className="min-h-[calc(100vh-4rem)]">
       <div className="bg-gradient-to-b from-[#003087]/10 to-transparent">
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto animate-fadeIn">
             <div className="flex items-center justify-center mb-6">
-              <GraduationCap className="h-12 w-12 text-[#003087] mr-4" />
+              <GraduationCap className="h-12 w-12 text-[#003087] mr-4 animate-bounce" />
               <h1 className="text-4xl sm:text-5xl font-bold text-[#003087]">
                 SWMHS Career Center
               </h1>
@@ -145,9 +111,20 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left mb-16">
             {features.map((feature, index) => (
-              <Link to={feature.link} key={index}>
-                <div className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full">
-                  <div className="mb-4">{feature.icon}</div>
+              <Link 
+                to={feature.link} 
+                key={index}
+                onMouseEnter={() => setActiveFeature(index)}
+                onMouseLeave={() => setActiveFeature(null)}
+              >
+                <div className={`bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-all duration-300 h-full transform ${
+                  activeFeature === index ? 'scale-105 border-[#003087]' : ''
+                }`}>
+                  <div className={`mb-4 transform transition-transform duration-300 ${
+                    activeFeature === index ? 'scale-110' : ''
+                  }`}>
+                    {feature.icon}
+                  </div>
                   <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                   <p className="text-gray-600 text-sm">{feature.description}</p>
                 </div>
@@ -155,7 +132,7 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6">
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6 animate-slideIn">
             <div className="flex items-center gap-2 mb-6">
               <HelpCircle className="h-6 w-6 text-[#003087]" />
               <h2 className="text-2xl font-bold text-[#003087]">Frequently Asked Questions</h2>
@@ -163,7 +140,7 @@ const Home = () => {
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
+                  <AccordionTrigger className="text-left hover:text-[#003087]">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent>
