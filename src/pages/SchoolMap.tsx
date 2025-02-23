@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -18,7 +17,8 @@ const LANGUAGES = {
     enterToken: "Enter your Mapbox token",
     save: "Save",
     directions: "Get Directions",
-    viewInfo: "School Information"
+    viewInfo: "School Information",
+    languageName: "English"
   },
   es: {
     title: "Escuela Secundaria Sayreville War Memorial",
@@ -28,17 +28,100 @@ const LANGUAGES = {
     enterToken: "Ingrese su token de Mapbox",
     save: "Guardar",
     directions: "Obtener Direcciones",
-    viewInfo: "Información Escolar"
+    viewInfo: "Información Escolar",
+    languageName: "Español"
+  },
+  hi: {
+    title: "सेरविले वॉर मेमोरियल हाई स्कूल",
+    address: "पता",
+    contact: "संपर्क",
+    phone: "फ़ोन",
+    enterToken: "अपना मैपबॉक्स टोकन दर्ज करें",
+    save: "सहेजें",
+    directions: "दिशा-निर्देश प्राप्त करें",
+    viewInfo: "स्कूल की जानकारी",
+    languageName: "हिन्दी"
+  },
+  mr: {
+    title: "सेरविले वॉर मेमोरियल हाय स्कूल",
+    address: "पत्ता",
+    contact: "संपर्क",
+    phone: "फोन",
+    enterToken: "मॅपबॉक्स टोकन प्रविष्ट करा",
+    save: "जतन करा",
+    directions: "दिशा मिळवा",
+    viewInfo: "शाळेची माहिती",
+    languageName: "मराठी"
+  },
+  de: {
+    title: "Sayreville War Memorial High School",
+    address: "Adresse",
+    contact: "Kontakt",
+    phone: "Telefon",
+    enterToken: "Geben Sie Ihr Mapbox-Token ein",
+    save: "Speichern",
+    directions: "Route anzeigen",
+    viewInfo: "Schulinformationen",
+    languageName: "Deutsch"
+  },
+  fr: {
+    title: "École Secondaire Sayreville War Memorial",
+    address: "Adresse",
+    contact: "Contact",
+    phone: "Téléphone",
+    enterToken: "Entrez votre jeton Mapbox",
+    save: "Enregistrer",
+    directions: "Obtenir l'itinéraire",
+    viewInfo: "Informations sur l'école",
+    languageName: "Français"
+  },
+  gu: {
+    title: "સેરવિલે વોર મેમોરિયલ હાઈ સ્કૂલ",
+    address: "સરનામું",
+    contact: "સંપર્ક",
+    phone: "ફોન",
+    enterToken: "તમારું મેપબોક્સ ટોકન દાખલ કરો",
+    save: "સાચવો",
+    directions: "દિશા મેળવો",
+    viewInfo: "શાળાની માહિતી",
+    languageName: "ગુજરાતી"
+  },
+  it: {
+    title: "Scuola Superiore Sayreville War Memorial",
+    address: "Indirizzo",
+    contact: "Contatto",
+    phone: "Telefono",
+    enterToken: "Inserisci il tuo token Mapbox",
+    save: "Salva",
+    directions: "Ottieni indicazioni",
+    viewInfo: "Informazioni sulla scuola",
+    languageName: "Italiano"
   }
 };
+
+type LanguageCode = keyof typeof LANGUAGES;
 
 const SchoolMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [token, setToken] = useState(localStorage.getItem('mapbox-token') || '');
-  const [language, setLanguage] = useState<'en' | 'es'>('en');
+  const [language, setLanguage] = useState<LanguageCode>(() => {
+    const savedLang = localStorage.getItem('preferred-language');
+    return (savedLang as LanguageCode) || 'en';
+  });
   const { toast } = useToast();
   const texts = LANGUAGES[language];
+
+  const handleLanguageChange = (newLang: LanguageCode) => {
+    setLanguage(newLang);
+    localStorage.setItem('preferred-language', newLang);
+    toast({
+      title: "Language Changed",
+      description: `Language set to ${LANGUAGES[newLang].languageName}`,
+      duration: 3000,
+    });
+    initializeMap(); // Reinitialize map to update language
+  };
 
   const saveToken = () => {
     localStorage.setItem('mapbox-token', token);
@@ -129,18 +212,24 @@ const SchoolMap = () => {
               <School className="h-6 w-6" />
               {texts.title}
             </CardTitle>
-            <Select value={language} onValueChange={(value: 'en' | 'es') => setLanguage(value)}>
-              <SelectTrigger className="w-[120px]">
+            <Select value={language} onValueChange={(value: LanguageCode) => handleLanguageChange(value)}>
+              <SelectTrigger className="w-[180px]">
                 <SelectValue>
                   <div className="flex items-center gap-2">
                     <Globe className="h-4 w-4" />
-                    {language.toUpperCase()}
+                    {LANGUAGES[language].languageName}
                   </div>
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">English</SelectItem>
                 <SelectItem value="es">Español</SelectItem>
+                <SelectItem value="hi">हिन्दी</SelectItem>
+                <SelectItem value="mr">मराठी</SelectItem>
+                <SelectItem value="de">Deutsch</SelectItem>
+                <SelectItem value="fr">Français</SelectItem>
+                <SelectItem value="gu">ગુજરાતી</SelectItem>
+                <SelectItem value="it">Italiano</SelectItem>
               </SelectContent>
             </Select>
           </div>
