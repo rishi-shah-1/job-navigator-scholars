@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { School, MapPin, Briefcase } from "lucide-react";
+import { MapPin, Briefcase } from "lucide-react";
 import { LanguageSelector } from "./LanguageSelector";
 
 const Navbar = () => {
@@ -10,7 +10,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <School className="h-8 w-8 text-white" />
+            <img 
+              src="/lovable-uploads/ee616333-99af-4324-87dd-05fd448763f4.png" 
+              alt="SWMHS Logo" 
+              className="h-10 w-10 bg-white rounded-full p-1"
+            />
             <div className="text-white">
               <span className="text-xl font-semibold block leading-tight">SWMHS</span>
               <span className="text-xs">Career Center</span>

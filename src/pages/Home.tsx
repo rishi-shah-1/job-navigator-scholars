@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,8 @@ import {
   Bell,
   Brain,
   ListTodo,
+  Calendar,
+  Presentation,
   Phone,
   Mail,
   User
@@ -70,6 +71,18 @@ const Home = () => {
       title: "Application Tracker",
       description: "Track all your applications in one place",
       link: "/applications"
+    },
+    {
+      icon: <Presentation className="h-8 w-8 text-[#003087]" />,
+      title: "Online Courses",
+      description: "Access free courses and certifications from top platforms",
+      link: "/courses"
+    },
+    {
+      icon: <Calendar className="h-8 w-8 text-[#003087]" />,
+      title: "Guidance Events",
+      description: "Register for workshops and career development events",
+      link: "/events"
     }
   ];
 
