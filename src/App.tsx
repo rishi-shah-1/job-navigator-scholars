@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -31,10 +32,10 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <TooltipProvider>
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+        <BrowserRouter>
+          <div className="min-h-screen bg-gray-50 flex flex-col">
+            <Toaster />
+            <Sonner />
             <Navbar />
             <main className="flex-grow">
               <Routes>
@@ -59,8 +60,8 @@ const App = () => (
               </Routes>
             </main>
             <Footer />
-          </BrowserRouter>
-        </div>
+          </div>
+        </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
   </QueryClientProvider>
