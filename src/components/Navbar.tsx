@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { School, MapPin, Briefcase } from "lucide-react";
+import { LanguageSelector } from "./LanguageSelector";
 
 const Navbar = () => {
   return (
@@ -25,6 +26,7 @@ const Navbar = () => {
               <Briefcase className="h-4 w-4" />
               Job Listings
             </Link>
+            <LanguageSelector />
             <Link to="/submit">
               <Button variant="outline" className="bg-white text-[#003087] hover:bg-gray-100">
                 Submit Job

@@ -142,7 +142,43 @@ export const mockJobs = [
     requirements: ["3.5+ GPA", "Healthcare interest", "Research proposal"],
     salary: "$3000 award",
     localEmployer: true
-  }
+  },
+  {
+    id: 13,
+    title: "Data Science Intern",
+    company: "Analytics Hub NJ",
+    location: "Princeton, NJ",
+    type: "Internship",
+    posted: "1 day ago",
+    description: "Join our data science team to work on real-world projects.",
+    requirements: ["Python", "Statistics", "Machine Learning basics"],
+    salary: "$25/hour",
+    localEmployer: true
+  },
+  {
+    id: 14,
+    title: "Biotech Research Assistant",
+    company: "BioAdvance Labs",
+    location: "New Brunswick, NJ",
+    type: "Part-time",
+    posted: "2 days ago",
+    description: "Assist in biotechnology research projects.",
+    requirements: ["Biology background", "Lab experience", "Detail-oriented"],
+    salary: "$22/hour",
+    localEmployer: true
+  },
+  {
+    id: 15,
+    title: "Digital Marketing Intern",
+    company: "Creative Digital NJ",
+    location: "Edison, NJ",
+    type: "Internship",
+    posted: "1 day ago",
+    description: "Learn digital marketing strategies hands-on.",
+    requirements: ["Social media skills", "Creative writing", "Analytics"],
+    salary: "$18/hour",
+    localEmployer: true
+  },
 ];
 
 export const mockEmployers = [
