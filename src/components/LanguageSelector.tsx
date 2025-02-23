@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Globe } from "lucide-react";
-import { LANGUAGES, useLanguage, type LanguageCode } from "@/contexts/LanguageContext";
+import { useLanguage, type LanguageCode, LANGUAGES } from "@/contexts/LanguageContext";
 
 export function LanguageSelector() {
   const { language, setLanguage } = useLanguage();
@@ -15,7 +15,7 @@ export function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 w-[140px] justify-start gap-2">
+        <Button variant="outline" size="sm" className="h-8 w-[140px] justify-start gap-2 bg-white">
           <Globe className="h-4 w-4" />
           {LANGUAGES[language].name}
         </Button>

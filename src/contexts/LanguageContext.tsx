@@ -2,6 +2,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
+export const LANGUAGES = {
+  en: { name: 'English' },
+  es: { name: 'Español' }
+} as const;
+
 // Expanded translations
 const translations = {
   en: {
@@ -32,7 +37,7 @@ const translations = {
     "Submit Job": "Submit Job",
     "School Map": "School Map",
     "Job Listings": "Job Listings",
-    "Courses": "Courses",
+    "Courses": "Cursos",
     "Events": "Events",
     "Reviews": "Reviews",
     "Permits": "Permits",
@@ -106,7 +111,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('preferred-language', lang);
     toast({
       title: "Language Changed",
-      description: `Language set to ${lang === 'en' ? 'English' : 'Español'}`,
+      description: `Language set to ${LANGUAGES[lang].name}`,
       duration: 3000,
     });
   };
