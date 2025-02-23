@@ -10,7 +10,7 @@ import {
   Stethoscope,
   Code,
   Lightbulb,
-  Bank,
+  Landmark,
   Wrench,
   ChefHat
 } from "lucide-react";
@@ -233,7 +233,7 @@ const industries = [
   { name: "All", icon: Star },
   { name: "Technology", icon: Code },
   { name: "Healthcare", icon: Stethoscope },
-  { name: "Finance", icon: Bank },
+  { name: "Finance", icon: Landmark },
   { name: "Marketing", icon: Lightbulb },
   { name: "Trades", icon: Wrench },
   { name: "Culinary", icon: ChefHat }
