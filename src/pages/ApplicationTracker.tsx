@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,11 +21,20 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
+type ApplicationStatus = 'pending' | 'interviewed' | 'accepted' | 'rejected';
+
 interface Application {
   id: string;
   company: string;
   position: string;
-  status: 'pending' | 'interviewed' | 'accepted' | 'rejected';
+  status: ApplicationStatus;
+  appliedDate: string;
+}
+
+interface FormData {
+  company: string;
+  position: string;
+  status: ApplicationStatus;
   appliedDate: string;
 }
 
@@ -32,25 +42,28 @@ const ApplicationTracker = () => {
   const [applications, setApplications] = useState<Application[]>(() => {
     const saved = localStorage.getItem('applications');
     if (saved) {
-      const parsed = JSON.parse(saved);
-      // Ensure the status is one of the allowed values
-      return parsed.map((app: any) => ({
-        ...app,
-        status: app.status as Application['status']
-      }));
+      try {
+        const parsed = JSON.parse(saved);
+        // Validate that the status is one of the allowed values
+        return parsed.filter((app: any) => 
+          ['pending', 'interviewed', 'accepted', 'rejected'].includes(app.status)
+        ) as Application[];
+      } catch {
+        return [];
+      }
     }
     return [{
       id: '1',
       company: 'Example Corp',
       position: 'Summer Intern',
-      status: 'pending' as const,
+      status: 'pending',
       appliedDate: '2024-03-15'
     }];
   });
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingApplication, setEditingApplication] = useState<Application | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     company: '',
     position: '',
     status: 'pending',
@@ -98,7 +111,7 @@ const ApplicationTracker = () => {
       saveToLocalStorage(updatedApplications);
       toast.success("Application updated successfully!");
     } else {
-      const newApplication = {
+      const newApplication: Application = {
         ...formData,
         id: Date.now().toString()
       };

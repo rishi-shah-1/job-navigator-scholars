@@ -25,6 +25,7 @@ import GuidanceEvents from "./pages/GuidanceEvents";
 import CareerInsights from "./pages/CareerInsights";
 import WorkPermits from "./pages/WorkPermits";
 import Alerts from "./pages/Alerts";
+import Sources from "./pages/Sources";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
                 <Route path="/insights" element={<CareerInsights />} />
                 <Route path="/permits" element={<WorkPermits />} />
                 <Route path="/alerts" element={<Alerts />} />
+                <Route path="/sources" element={<Sources />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
