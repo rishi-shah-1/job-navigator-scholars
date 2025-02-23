@@ -1,5 +1,5 @@
 
-import { Facebook, Twitter, Linkedin, Youtube, Pinterest } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Youtube, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SocialShare = () => {
@@ -24,7 +24,7 @@ const SocialShare = () => {
     },
     {
       name: "Pinterest",
-      icon: <Pinterest className="h-5 w-5" />,
+      icon: <Share2 className="h-5 w-5" />,
       url: "https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.sayrevillek12.net%2Flivestream&media=&description=Sayreville+Public+Schools+Live+Stream+-+Sayreville+School+District",
       color: "hover:bg-red-600"
     },
