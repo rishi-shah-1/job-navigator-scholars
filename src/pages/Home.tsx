@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,11 +15,7 @@ import {
   Brain,
   ListTodo,
   Calendar,
-  HelpCircle,
-  Presentation,
-  Phone,
-  Mail,
-  User
+  HelpCircle
 } from "lucide-react";
 import {
   Accordion,
@@ -26,9 +23,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFeature, setActiveFeature] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const features = [
     {
@@ -54,42 +54,6 @@ const Home = () => {
       title: "Live Support",
       description: "Get help from our guidance team when you need it",
       link: "/support"
-    },
-    {
-      icon: <MapPin className="h-8 w-8 text-[#003087]" />,
-      title: "Interactive Map",
-      description: "Find opportunities near Sayreville",
-      link: "/map"
-    },
-    {
-      icon: <Brain className="h-8 w-8 text-[#003087]" />,
-      title: "Smart Matching",
-      description: "Get personalized job recommendations",
-      link: "/recommendations"
-    },
-    {
-      icon: <Bell className="h-8 w-8 text-[#003087]" />,
-      title: "Instant Alerts",
-      description: "Never miss new opportunities",
-      link: "/alerts"
-    },
-    {
-      icon: <ListTodo className="h-8 w-8 text-[#003087]" />,
-      title: "Application Tracker",
-      description: "Track all your applications in one place",
-      link: "/applications"
-    },
-    {
-      icon: <Presentation className="h-8 w-8 text-[#003087]" />,
-      title: "Online Courses",
-      description: "Access free courses and certifications from top platforms",
-      link: "/courses"
-    },
-    {
-      icon: <Calendar className="h-8 w-8 text-[#003087]" />,
-      title: "Guidance Events",
-      description: "Register for workshops and career development events",
-      link: "/events"
     }
   ];
 
@@ -116,27 +80,27 @@ const Home = () => {
     <div className="min-h-[calc(100vh-4rem)]">
       <div className="bg-gradient-to-b from-[#003087]/10 to-transparent">
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto animate-fadeIn">
             <div className="flex items-center justify-center mb-6">
-              <GraduationCap className="h-12 w-12 text-[#003087] mr-4" />
+              <GraduationCap className="h-12 w-12 text-[#003087] mr-4 animate-bounce" />
               <h1 className="text-4xl sm:text-5xl font-bold text-[#003087]">
                 SWMHS Career Center
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-600 mb-8 animate-fadeIn">
               Discover exclusive job opportunities curated for Sayreville War Memorial High School students by your guidance department.
             </p>
             
             <div className="max-w-xl mx-auto flex gap-4 mb-12">
               <Input
                 type="text"
-                placeholder="Search for jobs, internships, or scholarships..."
+                placeholder={t("Search for jobs, internships, or scholarships...")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-12"
+                className="h-12 transition-all duration-300 focus:ring-2 focus:ring-[#003087]"
               />
               <Link to={`/jobs?search=${searchQuery}`}>
-                <Button className="h-12 px-6 bg-[#003087] hover:bg-[#002065]">
+                <Button className="h-12 px-6 bg-[#003087] hover:bg-[#002065] transition-colors duration-300">
                   <Search className="h-5 w-5" />
                 </Button>
               </Link>
@@ -145,29 +109,47 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left mb-16">
             {features.map((feature, index) => (
-              <Link to={feature.link} key={index}>
-                <div className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full">
-                  <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+              <Link 
+                to={feature.link} 
+                key={index}
+                onMouseEnter={() => setActiveFeature(index)}
+                onMouseLeave={() => setActiveFeature(null)}
+              >
+                <div 
+                  className={`
+                    bg-white p-6 rounded-lg shadow-sm border
+                    transition-all duration-300 ease-in-out
+                    transform hover:scale-105 hover:shadow-lg
+                    ${activeFeature === index ? 'border-[#003087]' : ''}
+                    animate-fadeIn
+                  `}
+                >
+                  <div className={`
+                    mb-4 transition-transform duration-300
+                    ${activeFeature === index ? 'transform scale-110' : ''}
+                  `}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{t(feature.title)}</h3>
+                  <p className="text-gray-600 text-sm">{t(feature.description)}</p>
                 </div>
               </Link>
             ))}
           </div>
 
-          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6">
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6 animate-slideIn">
             <div className="flex items-center gap-2 mb-6">
               <HelpCircle className="h-6 w-6 text-[#003087]" />
-              <h2 className="text-2xl font-bold text-[#003087]">Frequently Asked Questions</h2>
+              <h2 className="text-2xl font-bold text-[#003087]">{t("Frequently Asked Questions")}</h2>
             </div>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
+                  <AccordionTrigger className="text-left hover:text-[#003087] transition-colors duration-300">
+                    {t(faq.question)}
                   </AccordionTrigger>
-                  <AccordionContent>
-                    {faq.answer}
+                  <AccordionContent className="animate-fadeIn">
+                    {t(faq.answer)}
                   </AccordionContent>
                 </AccordionItem>
               ))}
