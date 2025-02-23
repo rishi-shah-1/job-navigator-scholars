@@ -3,24 +3,27 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, MapPin, Clock } from "lucide-react";
+import { Briefcase, MapPin, Clock, Send } from "lucide-react";
+import { mockJobs } from "@/data/mockJobs";
+import { useToast } from "@/hooks/use-toast";
 
 const JobDetail = () => {
   const { id } = useParams();
+  const { toast } = useToast();
+  
+  const job = mockJobs.find(j => j.id === Number(id));
 
-  // Mock job data
-  const job = {
-    title: "Software Developer Intern",
-    company: "Tech Corp",
-    location: "Remote",
-    type: "Internship",
-    posted: "2 days ago",
-    description: "We are seeking a talented Software Developer Intern to join our team...",
-    requirements: [
-      "Currently enrolled in Computer Science or related field",
-      "Strong programming skills in JavaScript/TypeScript",
-      "Experience with React is a plus",
-    ],
+  if (!job) {
+    return <div className="page-container">Job not found</div>;
+  }
+
+  const handleApply = () => {
+    // In a real app, this would submit to an API
+    toast({
+      title: "Application Submitted!",
+      description: `Your application for ${job.title} at ${job.company} has been submitted successfully.`,
+      duration: 5000,
+    });
   };
 
   return (
@@ -60,10 +63,19 @@ const JobDetail = () => {
                 <li key={index} className="mb-2">{req}</li>
               ))}
             </ul>
+
+            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+              <h2 className="text-xl font-semibold mb-2">Compensation</h2>
+              <p className="text-gray-600">{job.salary}</p>
+            </div>
           </div>
 
           <div className="mt-8">
-            <Button className="w-full bg-sage-500 hover:bg-sage-600">
+            <Button 
+              className="w-full bg-[#003087] hover:bg-[#002065]"
+              onClick={handleApply}
+            >
+              <Send className="h-4 w-4 mr-2" />
               Apply Now
             </Button>
           </div>

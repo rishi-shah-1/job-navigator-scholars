@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,16 +11,35 @@ interface Message {
   timestamp: Date;
 }
 
+const AUTOMATED_RESPONSES = {
+  default: "Thank you for your message. A guidance counselor will respond shortly. For immediate assistance, please call (732) 525-5252.",
+  resume: "For resume help, try our Resume Builder tool or schedule an appointment with your guidance counselor.",
+  application: "For application assistance, check out our Application Tracker or visit the guidance office during office hours.",
+  interview: "Need interview tips? Schedule a mock interview session with our career counselors.",
+  jobs: "Browse our job listings or use our Smart Job Matching tool to find opportunities that match your interests.",
+  scholarship: "Check out our scholarship listings and make sure to meet with your counselor to discuss opportunities.",
+};
+
 const Support = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! How can I help you with your career journey today?",
+      text: "Hello! How can I help you with your career journey today? You can ask about resumes, applications, interviews, jobs, or scholarships.",
       sender: 'support',
       timestamp: new Date()
     }
   ]);
   const [newMessage, setNewMessage] = useState("");
+
+  const getAutomatedResponse = (message: string) => {
+    const lowerMessage = message.toLowerCase();
+    if (lowerMessage.includes('resume')) return AUTOMATED_RESPONSES.resume;
+    if (lowerMessage.includes('application')) return AUTOMATED_RESPONSES.application;
+    if (lowerMessage.includes('interview')) return AUTOMATED_RESPONSES.interview;
+    if (lowerMessage.includes('job')) return AUTOMATED_RESPONSES.jobs;
+    if (lowerMessage.includes('scholarship')) return AUTOMATED_RESPONSES.scholarship;
+    return AUTOMATED_RESPONSES.default;
+  };
 
   const sendMessage = () => {
     if (!newMessage.trim()) return;
@@ -36,11 +54,11 @@ const Support = () => {
     setMessages([...messages, userMessage]);
     setNewMessage("");
 
-    // Simulate support response
+    // Automated response
     setTimeout(() => {
       const supportMessage: Message = {
         id: messages.length + 2,
-        text: "Thank you for your message. A guidance counselor will respond shortly. For immediate assistance, please call (732) 525-5252.",
+        text: getAutomatedResponse(newMessage),
         sender: 'support',
         timestamp: new Date()
       };

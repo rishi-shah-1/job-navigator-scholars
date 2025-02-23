@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, MapPin } from "lucide-react";
+import { Briefcase, MapPin, Bell } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface JobCardProps {
   job: {
@@ -17,6 +18,19 @@ interface JobCardProps {
 }
 
 const JobCard = ({ job }: JobCardProps) => {
+  const { toast } = useToast();
+
+  const handleNotify = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    toast({
+      title: "Notification Set!",
+      description: `You'll be notified about updates to ${job.title} at ${job.company}.`,
+      duration: 3000,
+    });
+  };
+
   return (
     <Card className="card-hover transition-all duration-200">
       <CardHeader>
@@ -44,9 +58,18 @@ const JobCard = ({ job }: JobCardProps) => {
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <span className="text-sm text-gray-500">Posted {job.posted}</span>
-        <Link to={`/jobs/${job.id}`}>
-          <Button variant="outline">View Details</Button>
-        </Link>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            size="icon"
+            onClick={handleNotify}
+          >
+            <Bell className="h-4 w-4" />
+          </Button>
+          <Link to={`/jobs/${job.id}`}>
+            <Button variant="outline">View Details</Button>
+          </Link>
+        </div>
       </CardFooter>
     </Card>
   );
