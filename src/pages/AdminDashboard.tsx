@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Check, X, Lock } from "lucide-react";
+import { Lock, Check, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const mockPendingJobs = [

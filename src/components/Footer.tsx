@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { Lock } from "lucide-react";
 
 const Footer = () => {
   return (
