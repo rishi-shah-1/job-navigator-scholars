@@ -32,67 +32,67 @@ const Home = () => {
 
   const features = [
     {
-      icon: <Building2 className="h-8 w-8 text-[#003087]" />,
+      icon: <Building2 className="h-8 w-8 text-navy" />,
       title: "Employer Profiles",
       description: "Browse trusted employers",
       link: "/employers"
     },
     {
-      icon: <ClipboardCheck className="h-8 w-8 text-[#003087]" />,
+      icon: <ClipboardCheck className="h-8 w-8 text-navy" />,
       title: "Resume Builder",
       description: "Create professional resumes",
       link: "/resume-builder"
     },
     {
-      icon: <BookOpen className="h-8 w-8 text-[#003087]" />,
+      icon: <BookOpen className="h-8 w-8 text-navy" />,
       title: "Opportunities",
       description: "Access jobs and internships",
       link: "/jobs"
     },
     {
-      icon: <Trophy className="h-8 w-8 text-[#003087]" />,
+      icon: <Trophy className="h-8 w-8 text-navy" />,
       title: "Success Stories",
       description: "Read graduate testimonials",
       link: "/success-stories"
     },
     {
-      icon: <MessageSquare className="h-8 w-8 text-[#003087]" />,
+      icon: <MessageSquare className="h-8 w-8 text-navy" />,
       title: "Live Support",
       description: "Get help",
       link: "/support"
     },
     {
-      icon: <MapPin className="h-8 w-8 text-[#003087]" />,
+      icon: <MapPin className="h-8 w-8 text-navy" />,
       title: "Interactive Map",
       description: "Find opportunities",
       link: "/map"
     },
     {
-      icon: <Brain className="h-8 w-8 text-[#003087]" />,
+      icon: <Brain className="h-8 w-8 text-navy" />,
       title: "Smart Matching",
       description: "Get personalized recommendations",
       link: "/recommendations"
     },
     {
-      icon: <Bell className="h-8 w-8 text-[#003087]" />,
+      icon: <Bell className="h-8 w-8 text-navy" />,
       title: "Instant Alerts",
       description: "Never miss opportunities",
       link: "/alerts"
     },
     {
-      icon: <ListTodo className="h-8 w-8 text-[#003087]" />,
+      icon: <ListTodo className="h-8 w-8 text-navy" />,
       title: "Application Tracker",
       description: "Track applications",
       link: "/applications"
     },
     {
-      icon: <Calendar className="h-8 w-8 text-[#003087]" />,
+      icon: <Calendar className="h-8 w-8 text-navy" />,
       title: "Guidance Events",
       description: "Register for workshops",
       link: "/events"
     },
     {
-      icon: <BookOpenCheck className="h-8 w-8 text-[#003087]" />,
+      icon: <BookOpenCheck className="h-8 w-8 text-navy" />,
       title: "Online Courses",
       description: "Access certifications & training",
       link: "/courses"
@@ -120,12 +120,12 @@ const Home = () => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)]">
-      <div className="bg-gradient-to-b from-[#003087]/10 to-transparent">
+      <div className="bg-gradient-to-b from-navy/10 to-transparent">
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center mb-6">
-              <GraduationCap className="h-12 w-12 text-[#003087] mr-4 animate-bounce" />
-              <h1 className="text-4xl sm:text-5xl font-bold text-[#003087]">
+              <GraduationCap className="h-12 w-12 text-navy mr-4 animate-bounce" />
+              <h1 className="text-4xl sm:text-5xl font-bold text-navy">
                 {t("SWMHS Career Center")}
               </h1>
             </div>
@@ -142,7 +142,7 @@ const Home = () => {
                 className="h-12"
               />
               <Link to={`/jobs?search=${searchQuery}`}>
-                <Button className="h-12 px-6 bg-[#003087] hover:bg-[#002065]">
+                <Button className="h-12 px-6 bg-navy hover:bg-navy-800">
                   <Search className="h-5 w-5" />
                 </Button>
               </Link>
@@ -163,8 +163,8 @@ const Home = () => {
 
           <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6">
             <div className="flex items-center gap-2 mb-6">
-              <HelpCircle className="h-6 w-6 text-[#003087]" />
-              <h2 className="text-2xl font-bold text-[#003087]">{t("Frequently Asked Questions")}</h2>
+              <HelpCircle className="h-6 w-6 text-navy" />
+              <h2 className="text-2xl font-bold text-navy">{t("Frequently Asked Questions")}</h2>
             </div>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (

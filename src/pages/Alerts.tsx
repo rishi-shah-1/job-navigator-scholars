@@ -69,10 +69,10 @@ const Alerts = () => {
     <div className="container mx-auto py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold text-[#003087]">Instant Alerts</h1>
+          <h1 className="text-3xl font-bold text-navy">Instant Alerts</h1>
           <Button 
             onClick={enableAllAlerts}
-            className="bg-[#003087] hover:bg-[#002065]"
+            className="bg-navy hover:bg-navy-800"
           >
             <Bell className="h-4 w-4 mr-2" />
             Enable All

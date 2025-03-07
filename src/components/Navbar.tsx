@@ -21,7 +21,7 @@ const Navbar = () => {
   const { t } = useLanguage();
 
   return (
-    <nav className="border-b bg-[#003087]/95 backdrop-blur-sm sticky top-0 z-50">
+    <nav className="border-b bg-navy/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
@@ -74,7 +74,7 @@ const Navbar = () => {
             </Link>
             <LanguageSelector />
             <Link to="/submit">
-              <Button variant="outline" className="bg-white text-[#003087] hover:bg-gray-100">
+              <Button variant="outline" className="bg-white text-navy hover:bg-gray-100">
                 {t("Submit Job")}
               </Button>
             </Link>

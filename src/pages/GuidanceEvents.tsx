@@ -33,7 +33,7 @@ const events = [
 const GuidanceEvents = () => {
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold text-[#003087] mb-6">Guidance Department Events</h1>
+      <h1 className="text-3xl font-bold text-navy mb-6">Guidance Department Events</h1>
       <p className="text-gray-600 mb-8">
         Join our virtual workshops and events to enhance your career development journey.
       </p>
@@ -61,7 +61,7 @@ const GuidanceEvents = () => {
                 </div>
               </div>
               <a href={event.registration} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#003087] hover:bg-[#002065]">
+                <Button className="bg-navy hover:bg-navy-800">
                   Register Now
                 </Button>
               </a>
