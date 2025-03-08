@@ -42,8 +42,8 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Resources</h3>
             <ul className="space-y-2">
               {[
-                { text: "HIB Resources", url: "https://www.sayrevillek12.net/departments/hib-resources" },
-                { text: "Budget", url: "https://www.sayrevillek12.net/departments/business-office/budget" },
+                { text: "HIB Resources", url: "https://www.sayrevillek12.net/district/hib-resources" },
+                { text: "Budget", url: "https://www.sayrevillek12.net/district/departments/business-office" },
                 { text: "Free and Reduced Meal Application", url: "https://www.sayrevillek12.net/departments/food-services" },
                 { text: "School Performance Reports", url: "https://www.sayrevillek12.net/departments/curriculum/school-performance-reports" },
               ].map((link, index) => (
@@ -104,3 +104,4 @@ const Footer = () => {
 }
 
 export default Footer;
+
