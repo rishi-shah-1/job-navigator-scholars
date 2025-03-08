@@ -45,7 +45,18 @@ const translations = {
     "Reviews": "Reviews",
     "Permits": "Permits",
     "Insights": "Insights",
-    "Search": "Search"
+    "Search": "Search",
+    "Success Stories": "Success Stories",
+    "Discover how SWMHS graduates launched their careers through our programs": "Discover how SWMHS graduates launched their careers through our programs",
+    "Starting salary": "Starting salary",
+    "Class of": "Class of",
+    "All": "All",
+    "Technology": "Technology",
+    "Healthcare": "Healthcare", 
+    "Finance": "Finance",
+    "Marketing": "Marketing",
+    "Trades": "Trades",
+    "Culinary": "Culinary"
   },
   es: {
     "Search for jobs, internships, or scholarships...": "Buscar trabajos, prácticas o becas...",
@@ -80,7 +91,18 @@ const translations = {
     "Reviews": "Reseñas",
     "Permits": "Permisos",
     "Insights": "Información",
-    "Search": "Buscar"
+    "Search": "Buscar",
+    "Success Stories": "Historias de Éxito",
+    "Discover how SWMHS graduates launched their careers through our programs": "Descubre cómo los graduados de SWMHS iniciaron sus carreras a través de nuestros programas",
+    "Starting salary": "Salario inicial",
+    "Class of": "Clase de",
+    "All": "Todos",
+    "Technology": "Tecnología",
+    "Healthcare": "Salud", 
+    "Finance": "Finanzas",
+    "Marketing": "Marketing",
+    "Trades": "Oficios",
+    "Culinary": "Culinaria"
   },
   hi: {
     "Search for jobs, internships, or scholarships...": "नौकरियों, इंटर्नशिप या छात्रवृत्ति की खोज करें...",
@@ -115,7 +137,18 @@ const translations = {
     "Reviews": "समीक्षाएं",
     "Permits": "परमिट",
     "Insights": "अंतर्दृष्टि",
-    "Search": "खोजें"
+    "Search": "खोजें",
+    "Success Stories": "सफलता की कहानियां",
+    "Discover how SWMHS graduates launched their careers through our programs": "जानें कैसे SWMHS के स्नातकों ने हमारे कार्यक्रमों के माध्यम से अपना करियर शुरू किया",
+    "Starting salary": "प्रारंभिक वेतन",
+    "Class of": "बैच",
+    "All": "सभी",
+    "Technology": "प्रौद्योगिकी",
+    "Healthcare": "स्वास्थ्य देखभाल", 
+    "Finance": "वित्त",
+    "Marketing": "मार्केटिंग",
+    "Trades": "व्यापार",
+    "Culinary": "पाकशास्त्र"
   },
   gu: {
     "Search for jobs, internships, or scholarships...": "નોકરીઓ, ઇન્ટર્નશિપ અથવા સ્કોલરશિપ માટે શોધો...",
@@ -150,7 +183,18 @@ const translations = {
     "Reviews": "સમીક્ષાઓ",
     "Permits": "પરમિટ્સ",
     "Insights": "અંતર્દૃષ્ટિ",
-    "Search": "શોધો"
+    "Search": "શોધો",
+    "Success Stories": "સફળતાની કહાનીઓ",
+    "Discover how SWMHS graduates launched their careers through our programs": "જાણો કે કેવી રીતે SWMHS સ્નાતકોએ અમારા કાર્યક્રમો દ્વારા તેમની કારકિર્દીની શરૂઆત કરી",
+    "Starting salary": "પ્રારંભિક પગાર",
+    "Class of": "વર્ગ",
+    "All": "બધા",
+    "Technology": "ટેકનોલોજી",
+    "Healthcare": "આરોગ્ય સંભાળ", 
+    "Finance": "ફાઇનાન્સ",
+    "Marketing": "માર્કેટિંગ",
+    "Trades": "વેપાર",
+    "Culinary": "પાકશાસ્ત્ર"
   },
   de: {
     "Search for jobs, internships, or scholarships...": "Suche nach Jobs, Praktika oder Stipendien...",
@@ -185,7 +229,18 @@ const translations = {
     "Reviews": "Bewertungen",
     "Permits": "Genehmigungen",
     "Insights": "Einblicke",
-    "Search": "Suchen"
+    "Search": "Suchen",
+    "Success Stories": "Erfolgsgeschichten",
+    "Discover how SWMHS graduates launched their careers through our programs": "Erfahren Sie, wie SWMHS-Absolventen ihre Karriere durch unsere Programme gestartet haben",
+    "Starting salary": "Einstiegsgehalt",
+    "Class of": "Jahrgang",
+    "All": "Alle",
+    "Technology": "Technologie",
+    "Healthcare": "Gesundheitswesen", 
+    "Finance": "Finanzen",
+    "Marketing": "Marketing",
+    "Trades": "Handwerk",
+    "Culinary": "Kulinarik"
   },
   fr: {
     "Search for jobs, internships, or scholarships...": "Rechercher des emplois, stages ou bourses...",
@@ -220,7 +275,18 @@ const translations = {
     "Reviews": "Avis",
     "Permits": "Permis",
     "Insights": "Analyses",
-    "Search": "Rechercher"
+    "Search": "Rechercher",
+    "Success Stories": "Histoires de Réussite",
+    "Discover how SWMHS graduates launched their careers through our programs": "Découvrez comment les diplômés de SWMHS ont lancé leur carrière grâce à nos programmes",
+    "Starting salary": "Salaire de départ",
+    "Class of": "Promotion de",
+    "All": "Tous",
+    "Technology": "Technologie",
+    "Healthcare": "Santé", 
+    "Finance": "Finance",
+    "Marketing": "Marketing",
+    "Trades": "Métiers",
+    "Culinary": "Culinaire"
   }
 };
 

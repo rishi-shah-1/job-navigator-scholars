@@ -14,6 +14,7 @@ import {
   Wrench,
   ChefHat
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Story {
   id: number;
@@ -241,6 +242,7 @@ const industries = [
 
 const SuccessStories = () => {
   const [selectedIndustry, setSelectedIndustry] = useState("All");
+  const { t } = useLanguage();
 
   const filteredStories = selectedIndustry === "All" 
     ? successStories 
@@ -251,10 +253,10 @@ const SuccessStories = () => {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <GraduationCap className="h-10 w-10 text-[#003087]" />
-          <h1 className="text-4xl font-bold text-[#003087]">Success Stories</h1>
+          <h1 className="text-4xl font-bold text-[#003087]">{t("Success Stories")}</h1>
         </div>
         <p className="text-lg text-gray-600">
-          Discover how SWMHS graduates launched their careers through our programs
+          {t("Discover how SWMHS graduates launched their careers through our programs")}
         </p>
       </div>
 
@@ -273,7 +275,7 @@ const SuccessStories = () => {
               onClick={() => setSelectedIndustry(industry.name)}
             >
               <Icon className="h-4 w-4" />
-              {industry.name}
+              {t(industry.name)}
             </Button>
           );
         })}
@@ -288,7 +290,7 @@ const SuccessStories = () => {
                   {story.name}
                 </CardTitle>
                 <span className="text-sm text-gray-500">
-                  Class of {story.graduationYear}
+                  {t("Class of")} {story.graduationYear}
                 </span>
               </div>
             </CardHeader>
@@ -304,7 +306,7 @@ const SuccessStories = () => {
                 </div>
                 {story.salary && (
                   <div className="text-green-600 text-sm font-medium">
-                    Starting salary: {story.salary}
+                    {t("Starting salary")}: {story.salary}
                   </div>
                 )}
               </div>
