@@ -9,11 +9,10 @@ import {
   Bell,
   Brain,
   ListTodo,
-  Calendar,
-  Trophy,
-  BookOpenCheck 
+  Trophy
 } from "lucide-react";
 
+// Reduced feature set for the main grid (showing 9 features)
 const features = [
   {
     icon: <Building2 className="h-8 w-8 text-navy" />,
@@ -68,52 +67,21 @@ const features = [
     title: "Application Tracker",
     description: "Track applications",
     link: "/applications"
-  },
-  {
-    icon: <Calendar className="h-8 w-8 text-navy" />,
-    title: "Guidance Events",
-    description: "Register for workshops",
-    link: "/events"
-  },
-  {
-    icon: <BookOpenCheck className="h-8 w-8 text-navy" />,
-    title: "Online Courses",
-    description: "Access certifications & training",
-    link: "/courses"
   }
 ];
 
 const FeaturesGrid = () => {
   return (
     <>
-      {/* Main features grid (first 9 features) */}
-      <div className="md:w-2/3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
-          {features.slice(0, 9).map((feature, index) => (
-            <FeatureCard 
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-              link={feature.link}
-            />
-          ))}
-        </div>
-      </div>
-      
-      {/* Bottom row for remaining features */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
-        {features.slice(9).map((feature, index) => (
-          <FeatureCard 
-            key={index + 9}
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-            link={feature.link}
-            displayStyle="horizontal"
-          />
-        ))}
-      </div>
+      {features.map((feature, index) => (
+        <FeatureCard 
+          key={index}
+          icon={feature.icon}
+          title={feature.title}
+          description={feature.description}
+          link={feature.link}
+        />
+      ))}
     </>
   );
 };
