@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -146,6 +147,19 @@ const Home = () => {
                   <Search className="h-5 w-5" />
                 </Button>
               </Link>
+            </div>
+
+            {/* Guidance Team Image Section */}
+            <div className="mb-16">
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h2 className="text-2xl font-bold text-navy mb-4">Meet Our Career Guidance Team</h2>
+                <p className="text-gray-600 mb-4">Our dedicated staff is here to help you navigate your career journey</p>
+                <img 
+                  src="/lovable-uploads/42758139-779e-49b7-9ab2-97867de5232c.png" 
+                  alt="SWMHS Career Guidance Team" 
+                  className="rounded-lg w-full max-w-2xl mx-auto shadow-lg"
+                />
+              </div>
             </div>
           </div>
 
