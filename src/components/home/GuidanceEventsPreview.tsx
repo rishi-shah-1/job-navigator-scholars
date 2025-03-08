@@ -8,15 +8,22 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const GuidanceEventsPreview = () => {
   const { t } = useLanguage();
   
-  // Preview just the first two events
+  // Preview just the first three events with a mix of virtual and in-person
   const previewEvents = [
     {
       title: "College Application Workshop",
-      date: "March 15, 2024"
+      date: "March 15, 2024",
+      location: "Virtual"
     },
     {
       title: "Career Exploration Day",
-      date: "March 22, 2024"
+      date: "March 22, 2024",
+      location: "In-Person"
+    },
+    {
+      title: "Resume Building Workshop",
+      date: "March 29, 2024",
+      location: "Virtual"
     }
   ];
 
@@ -32,7 +39,7 @@ const GuidanceEventsPreview = () => {
               <Calendar className="h-5 w-5 text-navy flex-shrink-0" />
               <div>
                 <p className="font-medium">{t(event.title)}</p>
-                <p className="text-sm text-gray-500">{event.date}</p>
+                <p className="text-sm text-gray-500">{event.date} • {t(event.location)}</p>
               </div>
             </div>
           ))}

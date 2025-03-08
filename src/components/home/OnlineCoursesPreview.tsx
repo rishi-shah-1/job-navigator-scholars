@@ -10,9 +10,18 @@ const OnlineCoursesPreview = () => {
   
   // Preview just a few course platforms
   const previewCourses = [
-    "LinkedIn Learning",
-    "Google Career Certificates", 
-    "Microsoft Learn"
+    {
+      name: "LinkedIn Learning",
+      category: "Professional Skills"
+    },
+    {
+      name: "Google Career Certificates", 
+      category: "Technical Skills"
+    },
+    {
+      name: "Microsoft Learn",
+      category: "Computer Science"
+    }
   ];
 
   return (
@@ -25,7 +34,10 @@ const OnlineCoursesPreview = () => {
           {previewCourses.map((course, index) => (
             <div key={index} className="flex items-center gap-3">
               <BookOpenCheck className="h-5 w-5 text-navy flex-shrink-0" />
-              <p className="font-medium">{t(course)}</p>
+              <div>
+                <p className="font-medium">{t(course.name)}</p>
+                <p className="text-sm text-gray-500">{t(course.category)}</p>
+              </div>
             </div>
           ))}
         </div>
