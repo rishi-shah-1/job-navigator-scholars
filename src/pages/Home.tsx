@@ -148,33 +148,57 @@ const Home = () => {
                 </Button>
               </Link>
             </div>
+          </div>
 
-            {/* Guidance Team Image Section */}
-            <div className="mb-16">
-              <div className="bg-white p-6 rounded-lg shadow-md">
+          {/* Two-column layout with image on left and content on right */}
+          <div className="flex flex-col md:flex-row gap-8 mb-16">
+            {/* Left column - Guidance Team Image */}
+            <div className="md:w-1/3">
+              <div className="bg-white p-6 rounded-lg shadow-md h-full">
                 <h2 className="text-2xl font-bold text-navy mb-4">Meet Our Career Guidance Team</h2>
                 <p className="text-gray-600 mb-4">Our dedicated staff is here to help you navigate your career journey</p>
                 <img 
                   src="/lovable-uploads/42758139-779e-49b7-9ab2-97867de5232c.png" 
                   alt="SWMHS Career Guidance Team" 
-                  className="rounded-lg w-full max-w-2xl mx-auto shadow-lg"
+                  className="rounded-lg w-full shadow-lg"
                 />
+              </div>
+            </div>
+            
+            {/* Right column - Feature grid */}
+            <div className="md:w-2/3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+                {features.slice(0, 9).map((feature, index) => (
+                  <Link to={feature.link} key={index}>
+                    <div className="bg-white p-4 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full transform hover:scale-105 duration-200">
+                      <div className="mb-2">{feature.icon}</div>
+                      <h3 className="text-base font-semibold mb-1">{t(feature.title)}</h3>
+                      <p className="text-gray-600 text-xs">{t(feature.description)}</p>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left mb-16">
-            {features.map((feature, index) => (
-              <Link to={feature.link} key={index}>
-                <div className="bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full transform hover:scale-105 duration-200">
-                  <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{t(feature.title)}</h3>
-                  <p className="text-gray-600 text-sm">{t(feature.description)}</p>
+          {/* Bottom row for remaining features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+            {features.slice(9).map((feature, index) => (
+              <Link to={feature.link} key={index + 9}>
+                <div className="bg-white p-4 rounded-lg shadow-sm border hover:shadow-md transition-shadow h-full transform hover:scale-105 duration-200">
+                  <div className="flex items-center">
+                    <div className="mr-3">{feature.icon}</div>
+                    <div>
+                      <h3 className="text-base font-semibold">{t(feature.title)}</h3>
+                      <p className="text-gray-600 text-sm">{t(feature.description)}</p>
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
 
+          {/* FAQ Section at the bottom */}
           <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border p-6">
             <div className="flex items-center gap-2 mb-6">
               <HelpCircle className="h-6 w-6 text-navy" />
