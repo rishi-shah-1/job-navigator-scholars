@@ -137,36 +137,36 @@ const GuidanceEvents = () => {
         {t("Join our workshops and events to enhance your career development journey.")}
       </p>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {events.map((event, index) => (
-          <Card key={index} className="h-full flex flex-col">
+          <Card key={index} className="h-full flex flex-col hover:shadow-md transition-shadow">
             <CardHeader>
-              <CardTitle>{t(event.title)}</CardTitle>
+              <CardTitle className="text-xl md:text-2xl">{t(event.title)}</CardTitle>
               <CardDescription className="text-sm mt-2">{t(event.description)}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
-              <div className="space-y-2 mb-4">
+              <div className="space-y-3 mb-4">
                 <div className="flex items-center gap-2 text-gray-600">
-                  <Calendar className="h-4 w-4" />
-                  <span>{event.date}</span>
+                  <Calendar className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">{event.date}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <Clock className="h-4 w-4" />
-                  <span>{event.time}</span>
+                  <Clock className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">{event.time}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <MapPin className="h-4 w-4" />
-                  <span>{t(event.location)}</span>
+                  <MapPin className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">{t(event.location)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <Users className="h-4 w-4" />
-                  <span>{t("Spots left")}: {event.spots_left} / {event.capacity}</span>
+                  <Users className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">{t("Spots left")}: {event.spots_left} / {event.capacity}</span>
                 </div>
               </div>
             </CardContent>
             <CardFooter>
               <Button 
-                className="w-full bg-navy hover:bg-navy-800" 
+                className="w-full bg-navy hover:bg-navy-800 text-sm md:text-base py-2" 
                 onClick={() => handleRegister(event)}
               >
                 {t("Register Now")}
@@ -176,12 +176,12 @@ const GuidanceEvents = () => {
         ))}
       </div>
 
-      {/* Registration Dialog */}
+      {/* Registration Dialog - Made more mobile-friendly */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-[500px] max-w-[95vw] p-4 sm:p-6 rounded-lg">
           <DialogHeader>
-            <DialogTitle>{t("Register for")} {selectedEvent?.title}</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-lg sm:text-xl">{t("Register for")} {selectedEvent?.title}</DialogTitle>
+            <DialogDescription className="text-sm">
               {t("Fill out the form below to register for this event.")}
             </DialogDescription>
           </DialogHeader>
@@ -195,6 +195,7 @@ const GuidanceEvents = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 required 
+                className="w-full"
               />
             </div>
             
@@ -207,6 +208,7 @@ const GuidanceEvents = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required 
+                className="w-full"
               />
             </div>
             
@@ -217,6 +219,7 @@ const GuidanceEvents = () => {
                 name="phone" 
                 value={formData.phone}
                 onChange={handleInputChange}
+                className="w-full"
               />
             </div>
             
@@ -226,7 +229,7 @@ const GuidanceEvents = () => {
                 name="grade"
                 onValueChange={(value) => setFormData({...formData, grade: value})}
               >
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder={t("Select grade")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -246,15 +249,15 @@ const GuidanceEvents = () => {
                 value={formData.questions}
                 onChange={handleInputChange}
                 placeholder={t("Any specific questions for the presenters?")}
-                className="h-24"
+                className="h-24 w-full"
               />
             </div>
             
-            <div className="flex justify-end gap-3 mt-6">
-              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+            <div className="flex flex-col sm:flex-row sm:justify-end gap-3 mt-6">
+              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} className="w-full sm:w-auto">
                 {t("Cancel")}
               </Button>
-              <Button type="submit" className="bg-navy hover:bg-navy-800">
+              <Button type="submit" className="bg-navy hover:bg-navy-800 w-full sm:w-auto">
                 {t("Confirm Registration")}
               </Button>
             </div>

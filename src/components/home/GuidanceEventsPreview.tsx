@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const GuidanceEventsPreview = () => {
   const { t } = useLanguage();
   
-  // Preview just the first three events with a mix of virtual and in-person
+  // Preview just the first three events from our expanded list
   const previewEvents = [
     {
       title: "College Application Workshop",
@@ -18,7 +18,7 @@ const GuidanceEventsPreview = () => {
     {
       title: "Career Exploration Day",
       date: "March 22, 2024",
-      location: "In-Person"
+      location: "Auditorium, Main Building"
     },
     {
       title: "Resume Building Workshop",
