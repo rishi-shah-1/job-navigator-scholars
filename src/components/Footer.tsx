@@ -44,7 +44,7 @@ const Footer = () => {
               {[
                 { text: "HIB Resources", url: "https://www.sayrevillek12.net/district/hib-resources" },
                 { text: "Budget", url: "https://www.sayrevillek12.net/district/departments/business-office" },
-                { text: "Free and Reduced Meal Application", url: "https://www.sayrevillek12.net/departments/food-services" },
+                { text: "Free and Reduced Meal Application", url: "https://www.sayrevillek12.net/district/departments/food-services" },
                 { text: "School Performance Reports", url: "https://www.sayrevillek12.net/departments/curriculum/school-performance-reports" },
               ].map((link, index) => (
                 <li key={index}>
@@ -104,4 +104,3 @@ const Footer = () => {
 }
 
 export default Footer;
-
